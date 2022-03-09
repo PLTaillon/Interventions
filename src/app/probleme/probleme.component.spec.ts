@@ -21,15 +21,15 @@ describe('ProblemeComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+     expect(component).toBeTruthy();
+  });
 
   it("#1 | Zone PRÉNOM invalide avec 2 caractères", () =>{
     let zone = component.problemeForm.controls['prenom'];
     zone.setValue("a".repeat(2));
     let errors = zone.errors || {};
-    expect(errors['minlength']).toBeTruthy();
+    expect(errors['minlength']).toBeFalsy();
     });
 
   it("#2 | Zone PRÉNOM valide avec 3 caractères", () =>{
