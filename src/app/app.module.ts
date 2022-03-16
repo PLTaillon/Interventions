@@ -7,6 +7,9 @@ import { ProblemeComponent } from './probleme/probleme.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProblemeData } from './probleme/probleme-data';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(ProblemeData, {delay:1000})
   ],
   providers: [],
   bootstrap: [AppComponent]
