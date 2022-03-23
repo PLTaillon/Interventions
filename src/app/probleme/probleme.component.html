@@ -26,11 +26,6 @@
                 problemeForm.get('prenom').dirty) &&
                 !problemeForm.get('prenom').valid}"
                 />
-                
-              
-              </div> 
-              
-              
                 <span class="form-text" *ngIf="(problemeForm.get('prenom').touched ||
                 problemeForm.get('prenom').dirty) &&
                 (problemeForm.get('prenom').errors)">
@@ -45,6 +40,11 @@
                       </small>
                   </span>
               </span> 
+              
+              </div> 
+              
+              
+                
             </div>
 
             <!-- Zone de texte NOM -->
@@ -63,11 +63,6 @@
                 problemeForm.get('nom').dirty) &&
                 !problemeForm.get('nom').valid}"
                 />
-                
-              
-              </div> 
-              
-              
                 <span class="form-text" *ngIf="(problemeForm.get('nom').touched ||
                 problemeForm.get('nom').dirty) &&
                 (problemeForm.get('nom').errors)">
@@ -82,6 +77,11 @@
                       </small>
                   </span>
                 </span> 
+              
+              </div> 
+              
+              
+                
             </div>
 
             <!-- Zone de liste déroulante TYPE DE PROBLÈME -->
@@ -108,19 +108,12 @@
                   </span>
                 </span>
               </div>
+
             </div>
+            
           </form>
 
-        </div>
-    
-            <!-- Zone de texte PRENOM -->
-               
-            
-
-
-
-  
-          
+        </div>     
       </div>
       <div class="card-footer">
             <!-- Bouton save ici -->
