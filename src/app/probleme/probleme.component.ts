@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { emailMatcherValidator } from '../shared/email-matcher/email-matcher.component';
 import { VerifierCaracteresValidator } from '../shared/longueur-minimum/longueur-minimum.component';
 import { ITypeProbleme } from './typeprobleme';
 import { TypeproblemeService } from './typeprobleme.service';
@@ -42,18 +43,34 @@ export class ProblemeComponent implements OnInit {
     const courrielConfirmationControl = this.problemeForm.get("courrielGroup.courrielConfirmation");
     const telephoneControl = this.problemeForm.get("telephone");
 
+    courrielControl.clearValidators();
+    courrielControl.reset();
+    courrielControl.disable();
+
+    courrielConfirmationControl.clearValidators();
+    courrielConfirmationControl.reset();
+    courrielConfirmationControl.disable();
+
     telephoneControl.clearValidators();
     telephoneControl.reset();
     telephoneControl.disable();
 
-    if(notifications === 'Activee'){
-        courrielsGroupControl.setValidators([Validators.required]);
-        courrielsGroupControl.enable();
-        telephoneControl.setValidators([Validators.required]);
-        telephoneControl.enable();
+    if(notifications === 'courriel'){
+
+      courrielsGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])])
+      courrielControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
+      courrielConfirmationControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
+      courrielControl.enable();
+      courrielConfirmationControl.enable();
+    }
+    else if(notifications === 'messageTelephone'){
+      
+      telephoneControl.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]+')]);
+      telephoneControl.enable();
     }
     
-    courrielsGroupControl.updateValueAndValidity();
+    courrielControl.updateValueAndValidity();
+    courrielConfirmationControl.updateValueAndValidity();
     telephoneControl.updateValueAndValidity();
   }
 
