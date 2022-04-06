@@ -26,12 +26,18 @@ export class ProblemeComponent implements OnInit {
           courriel: [{value: '', disabled: true}],
           courrielConfirmation: [{value: '', disabled: true}],
         }),
-      telephone: [{value: '', disabled: true}]
+      telephone: [{value: '', disabled: true}],
+      notification:['pasnotifier'],
+      descriptionProbleme:['', [Validators.required, Validators.minLength(5)]],
+      noUnite:'',
+      dateProbleme:{value:Date(), disabled:true}
     });
 
     this.categories.obtenirCategories()
     .subscribe(cat => this.typesProblemes = cat,
                error => this.errorMessage = <any>error);  
+    this.problemeForm.get('notification').valueChanges
+    .subscribe(value=>this.appliquerNotifications(value))
   }
 
   save(): void {
@@ -63,7 +69,7 @@ export class ProblemeComponent implements OnInit {
       courrielControl.enable();
       courrielConfirmationControl.enable();
     }
-    else if(notifications === 'messageTelephone'){
+    if(notifications === 'messageTelephone'){
       
       telephoneControl.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]+')]);
       telephoneControl.enable();
