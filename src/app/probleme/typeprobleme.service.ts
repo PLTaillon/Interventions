@@ -8,7 +8,7 @@ import { ITypeProbleme } from './typeprobleme';
 })
 export class TypeproblemeService {
 
-  private baseUrl = 'api/typesprobleme';
+  private baseUrl = 'https://localhost:7296/Intervention';
 
   constructor(private http: HttpClient) { }
 
